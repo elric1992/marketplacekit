@@ -47,7 +47,7 @@ class ProfileController extends Controller
 		if($request->input('lat') && $request->input('lng')) {
             $lat = $request->input('lat');
             $lng = $request->input('lng');
-            $user->location = \DB::raw("(GeomFromText('POINT($lat $lng)'))");
+            $user->location = \DB::raw("(ST_GeomFromText('POINT($lat $lng)'))");
             $user->address = $request->input('location');
             if($request->input('country')) {
                 $user->country = $request->input('country');
